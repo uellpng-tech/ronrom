@@ -1,11 +1,12 @@
 body{
     margin: 0;
     padding: 0;
+    display: flex;
 }
 
 .menu_lateral{
-    display: flex;
-    justify-content: left;
+    width: 120px;
+    flex-shrink: 0;
 }
 
 .menu_caixa{
@@ -38,4 +39,49 @@ body{
     min-width: 4vh;
     margin-top: 1vh;
     margin-left: 2vh;
+}
+
+.feed{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+.pesquisa{
+    display: flex;
+    height: 40px;
+    width: 100%;
+    max-width: 700px;
+    background-color:#ffffff;
+    border: 2px solid #ffbd59;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.lupa{
+    display: flex;
+    margin-left: 3px;
+    align-items: center;
+}
+
+.lupa img{
+    width: 40px;
+    height: 40px;
+}
+
+.linha {
+    width: 2px;
+    height: 30px;
+    background-color: #ffbd59;
+}
+
+.pesquisa input{
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    background: transparent;
+    flex: 1;
+    height: 100%;
 }
