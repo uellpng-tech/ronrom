@@ -1,0 +1,54 @@
+body{
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.principal{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20vw;
+}
+
+.linha{
+    display: flex;
+    background-color:#ffbd59;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    align-items:center;
+}
+
+.bloco_login{
+    display: flex;
+    background-color: #b35a00;
+    flex-direction: column;
+    padding: 0 2vw;
+    gap: 15px;
+    width: 30vw;
+    height: 40vh;
+    border-radius: 8px;
+}
+
+.bloco_login input:first-child{
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 43px;
+}
+
+.bloco_login input{
+    border: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 16px;
+}
+
+.bloco_login legend{
+    color: white;
+    font-size: 30px;
+    border-radius: 10px;
+    font-weight: bold;
+}
