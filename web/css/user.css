@@ -5,44 +5,59 @@ body{
     min-height: 100vh;
 }
 
+.rodape{
+    position: relative;
+}
+
 .principal{
     flex: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    padding-right: 20vw;
+    padding-left: 3vw;
 }
 
 .linha{
     display: flex;
     background-color:#ffbd59;
     width: 100%;
-    padding: 20px;
+    padding: 80px 20px;
     box-sizing: border-box;
     align-items:center;
+}
+
+.linha img{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    width: 10vw;
 }
 
 .bloco_login{
     display: flex;
     background-color: #b35a00;
     flex-direction: column;
-    padding: 0 2vw;
+    padding: 2vw;
+    padding-bottom: 5vh;
     gap: 15px;
-    width: 30vw;
-    height: 40vh;
+    width: 40vw;
+    height: 60vh;
     border-radius: 8px;
+    box-sizing: border-box;
+    justify-content: center;
 }
 
 .bloco_login input:first-child{
     width: 100%;
     box-sizing: border-box;
-    margin-top: 43px;
 }
 
 .bloco_login input{
     border: none;
     border-radius: 8px;
-    padding: 12px 15px;
+    padding: 15px 18px;
     font-size: 16px;
 }
 
@@ -51,4 +66,26 @@ body{
     font-size: 30px;
     border-radius: 10px;
     font-weight: bold;
+}
+
+.bloco_login button{
+    width: 50%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+    margin-top: 20px;
+}
+
+.bloco_login a{
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.bloco_login a:hover {
+    text-decoration: underline;
 }
