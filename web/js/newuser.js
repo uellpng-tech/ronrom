@@ -24,6 +24,7 @@ document.getElementById("criar_btn").addEventListener("click", async () => {
     console.log(dados)
 
     if (resposta.ok) {
-        window.location.href = "verificar.html"
-    }
+    localStorage.setItem("email", email)
+
+    window.location.href = "verificar.html"}
 })

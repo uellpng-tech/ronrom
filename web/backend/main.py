@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
-from usuarios import criar_user
+from usuarios import criar_user, veri_user_email
 
 app = Flask(__name__)
 CORS(app)
@@ -15,6 +15,7 @@ def cadastro():
     senha = dados["senha"]
 
     criar_user(username, email, senha)
+    veri_user_email(email)
 
     return {"mensagem": "usuário criado"}, 201
 
