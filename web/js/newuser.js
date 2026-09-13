@@ -4,8 +4,6 @@ document.getElementById("criar_btn").addEventListener("click", async () => {
     const email = document.getElementById("email").value
     const senha = document.getElementById("senha").value
 
-    localStorage.setItem("email", email)
-
     const resposta = await fetch("http://127.0.0.1:5000/api/cadastro", {
         
         method: "POST",

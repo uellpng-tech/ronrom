@@ -1,3 +1,4 @@
+import threading
 from flask import Flask, request
 from flask_cors import CORS
 from usuarios import criar_user, veri_user_email
@@ -15,7 +16,8 @@ def cadastro():
     senha = dados["senha"]
 
     criar_user(username, email, senha)
-    veri_user_email(email)
+
+    threading.Thread(target=veri_user_email, args=(email,), daemon=True).start()
 
     return {"mensagem": "usuário criado"}, 201
 
