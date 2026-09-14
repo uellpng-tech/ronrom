@@ -54,3 +54,37 @@ def veri_user_email(email):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(emailenv, senha_app_email)
         smtp.send_message(msg)
+
+def veri_cod(email, codigo):
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT codigo
+        FROM usuarios
+        WHERE email = ? AND codigo = ?
+""", (email, codigo))
+
+    cod = cursor.fetchone()
+
+    conexao.close()
+
+    if cod:
+        return True
+
+    return False
+
+def confirmar_email(email):
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        UPDATE usuarios
+        SET email_verificado = 1
+        WHERE email = ?
+""", (email,))
+
+    conexao.commit()
+    conexao.close()
