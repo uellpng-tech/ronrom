@@ -16,11 +16,14 @@ def cadastro():
     email = dados["email"]
     senha = dados["senha"]
 
-    criar_user(username, email, senha)
+    resultadoc = criar_user(username, email, senha)
+
+    if resultadoc != ["sucesso"]:
+        return{"status": resultadoc}, 409
 
     threading.Thread(target=veri_user_email, args=(email,), daemon=True).start()
 
-    return {"mensagem": "usuário criado"}, 201
+    return {"status": ["sucesso"]}, 201
 
 @app.route("/api/verificar-email", methods=["POST"])
 def veri_codf():

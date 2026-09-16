@@ -41,7 +41,7 @@ body{
     flex-direction: column;
     padding: 2vw;
     padding-bottom: 5vh;
-    gap: 15px;
+    gap: 10px;
     width: 40vw;
     height: 60vh;
     border-radius: 8px;
@@ -76,7 +76,7 @@ body{
     font-size: 16px;
     cursor: pointer;
     align-self: center;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .voltar {
@@ -96,4 +96,10 @@ body{
     font-size: 19px;
     color: #ffbd59;
     font-weight: bold;
+}
+
+.bloco_cadastro a{
+    color: red;
+    text-align: center;
+    font-size: 15px;
 }

@@ -2,6 +2,7 @@ import bcrypt
 import random
 import smtplib
 import os
+import sqlite3
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from email.message import EmailMessage
@@ -27,13 +28,39 @@ def criar_user(username, email, senha):
     conexao = conectar()
     cursor = conexao.cursor()
 
+    erros = []
+
+    cursor.execute(
+        "SELECT username FROM usuarios WHERE username = ?",
+        (username,)
+    )
+
+    if cursor.fetchone():
+        erros.append("username_em_uso")
+
+    
+
+    cursor.execute(
+        "SELECT email FROM usuarios WHERE email = ?",
+        (email,)
+    )
+
+    if cursor.fetchone():
+        erros.append("email_em_uso")
+
+    if erros:
+        conexao.close()
+        return erros
+    
     cursor.execute("""
     INSERT INTO usuarios (username, email, senha_hash, codigo, email_verificado, codigo_expira_em)
     VALUES (?, ?, ?, ?, ?, ?)
-""",(username, email, hash, codigo, 0, expiracao))
+    """,(username, email, hash, codigo, 0, expiracao))
 
     conexao.commit()
     conexao.close()
+
+    return["sucesso"]
 
 def veri_user_email(email):
 
