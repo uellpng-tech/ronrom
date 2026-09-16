@@ -1,7 +1,8 @@
 import threading
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-from usuarios import criar_user, veri_user_email, veri_cod, confirmar_email
+from usuarios import criar_user, veri_user_email, veri_cod, confirmar_email, reenviar_email
+from database import conectar
 
 app = Flask(__name__)
 CORS(app)
@@ -36,5 +37,44 @@ def veri_codf():
         return {"mensagem": "código correto"}, 200
 
     return {"mensagem": "código incorreto"}, 400
+
+@app.route("/api/reenviar-codigo", methods=["POST"])
+def reenvio():
+
+    dadosv = request.json
+    email = dadosv["email"]
+
+    reenviar_email(email)
+
+    return jsonify({
+        "menagem": "Código reenviado com sucesso"
+    }), 200
+
+
+@app.route("/api/expiracao-codigo", methods=["POST"])
+def expiracao_codigo():
+
+    dadose = request.get_json()
+    email = dadose["email"]
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT codigo_expira_em
+        FROM usuarios
+        WHERE email = ?
+""", (email,))
+
+    expiracao = cursor.fetchone()
+
+    conexao.close()
+
+    if not expiracao:
+        return jsonify({"mensagem": "Email não encontrado"}), 404
+
+    return jsonify({
+        "expiracao": expiracao[0]
+    }), 200
 
 app.run(debug=True)

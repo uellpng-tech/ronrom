@@ -17,8 +17,9 @@
         <div class="bloco_verificacao">
             <legend>Verifique seu E-mail</legend>
             <legend id="email-masc"></legend>
-            <a>Um código de verificação foi enviado para o email a cima, verifique o código e insira na caixa de texto abaixo para verificação do seu email.</a>
+            <a id="tempo-expiracao">Um código de verificação foi enviado para o email a cima, verifique o código e insira na caixa de texto abaixo para verificação do seu email. O código de verificação expira em (300s).</a>
             <input type="text" placeholder="Código..." maxlength="15" id="codigo">
+            <button id="reenv_btn">Reenviar código (60s)</button>
             <button type="submit" id="confirmar_btn">Confirmar</button>
         </div>
     </header>

@@ -2,6 +2,7 @@ import bcrypt
 import random
 import smtplib
 import os
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from email.message import EmailMessage
 from database import conectar
@@ -12,20 +13,24 @@ emailenv = os.getenv('emailenv')
 senha_app_email = os.getenv('senha_app_email')
 
 def gerar_cod():
-    return f"meow{random.randint(0, 9999)}"
+    return f"meow{random.randint(0, 9999):04d}"
+
+def gerar_expiracao():
+    return datetime.now() + timedelta(minutes=5)
 
 def criar_user(username, email, senha):
 
     hash = bcrypt.hashpw(senha.encode("utf-8"), bcrypt.gensalt())
     codigo = gerar_cod()
+    expiracao = gerar_expiracao()
 
     conexao = conectar()
     cursor = conexao.cursor()
 
     cursor.execute("""
-    INSERT INTO usuarios (username, email, senha_hash, codigo, email_verificado)
-    VALUES (?, ?, ?, ?, ?)
-""",(username, email, hash, codigo, 0))
+    INSERT INTO usuarios (username, email, senha_hash, codigo, email_verificado, codigo_expira_em)
+    VALUES (?, ?, ?, ?, ?, ?)
+""",(username, email, hash, codigo, 0, expiracao))
 
     conexao.commit()
     conexao.close()
@@ -61,7 +66,7 @@ def veri_cod(email, codigo):
     cursor = conexao.cursor()
 
     cursor.execute("""
-        SELECT codigo
+        SELECT codigo, codigo_expira_em
         FROM usuarios
         WHERE email = ? AND codigo = ?
 """, (email, codigo))
@@ -70,10 +75,15 @@ def veri_cod(email, codigo):
 
     conexao.close()
 
-    if cod:
-        return True
+    if not cod:
+        return False
 
-    return False
+    expiracao = datetime.fromisoformat(cod[1])
+
+    if datetime.now() > expiracao:
+        return False
+
+    return True
 
 def confirmar_email(email):
 
@@ -88,3 +98,36 @@ def confirmar_email(email):
 
     conexao.commit()
     conexao.close()
+
+def atualizar_cod(email):
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    codigo = gerar_cod()
+    expiracao = gerar_expiracao()
+
+    cursor.execute("""
+        UPDATE usuarios
+        SET codigo = ?, codigo_expira_em = ?
+        WHERE email = ?
+""", (codigo, expiracao, email))
+
+    conexao.commit()
+    conexao.close()
+
+    return codigo
+
+def reenviar_email(email):
+
+    cod = atualizar_cod(email)
+
+    msg = EmailMessage()
+    msg['Subject'] = 'Código de verificação Ronrom'
+    msg['From'] = emailenv
+    msg['To'] = email
+    msg.set_content(f'Olá, este é o email de verificação da Ronrom. Seu código de verificação de email é {cod}, não compartilhe o código de verificação para ninguém!')
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(emailenv, senha_app_email)
+        smtp.send_message(msg)

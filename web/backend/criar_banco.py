@@ -10,7 +10,8 @@ cursor.execute("""
         email TEXT NOT NULL UNIQUE,
         senha_hash TEXT NOT NULL,
         codigo TEXT,
-        email_verificado BOLEAN NOT NULL DEFAULT FALSE
+        email_verificado BOLEAN NOT NULL DEFAULT FALSE,
+        codigo_expira_em DATETIME
     )
 """)
 

@@ -41,7 +41,7 @@ body{
     flex-direction: column;
     padding: 2vw;
     padding-bottom: 5vh;
-    gap: 15px;
+    gap: 8px;
     width: 40vw;
     height: 60vh;
     border-radius: 8px;
@@ -77,7 +77,7 @@ body{
     font-size: 16px;
     cursor: pointer;
     align-self: center;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .bloco_verificacao a {
@@ -86,7 +86,7 @@ body{
     font-size: 15px;
 }
 
-.voltar {
+.voltar{
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -97,10 +97,23 @@ body{
     height: 50px;
 }
 
-.voltar a {
+.voltar a{
     text-decoration: none;
     margin-left: -10px;
     font-size: 19px;
     color: #ffbd59;
     font-weight: bold;
+}
+
+#reenv_btn{
+    width: 40%;
+    margin: 0;
+    margin-top: 0px;
+    background: none;
+    color: white;
+    text-decoration: none;
+}
+
+#reenv_btn:hover{
+    text-decoration: underline;
 }
