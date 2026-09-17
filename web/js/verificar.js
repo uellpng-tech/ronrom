@@ -10,6 +10,8 @@ const email = localStorage.getItem("email")
 
 document.getElementById("email-masc").textContent = emailmasc(email)
 
+const errocod = document.getElementById("errocod")
+
 document.getElementById("confirmar_btn").addEventListener("click", async () => {
 
     const codigo = document.getElementById("codigo").value
@@ -31,47 +33,63 @@ document.getElementById("confirmar_btn").addEventListener("click", async () => {
 
     console.log(dadosc)
 
+    const status = document.getElementById("status")
+
     if (verificacao.ok){
         console.log(dadosc.mensagem)
         window.location.href = "index.html"
     } else {
         console.log(dadosc.mensagem)
+        status.textContent = `*${dadosc.mensagem}*`
     }
 
 })
 
-let timer = null
-
 function iniciartimer(){
 
-    if (timer !== null) {
+    const fim = Date.now() + 60 * 1000
+
+    localStorage.setItem("reenviar_fim", fim)
+
+    atualizartimer()
+}
+
+function atualizartimer(){
+
+    const botao = document.getElementById("reenv_btn")
+    const fim = Number(localStorage.getItem("reenviar_fim"))
+
+    if (!fim) {
+        botao.disabled = false
+        botao.textContent = "Reenviar código"
         return
     }
 
-    let tempo = 60
+    const restante = fim - Date.now()
 
-    reenv_btn.disabled = true
+    if (restante <= 0){
+        localStorage.removeItem("reenviar_fim")
 
-    timer = setInterval(() => {
-        
-        tempo--
+        botao.disabled = false
+        botao.textContent = "Reenviar código"
 
-        reenv_btn.textContent = `Reenviar código (${tempo}s)`
+        return
+    }
 
-        if (tempo <= 0) {
-            clearInterval(timer)
-            timer = null
+    const segundos = Math.ceil(restante / 1000)
 
-            reenv_btn.disabled = false
-            reenv_btn.textContent = "Reenviar código"
-        }
+    botao.disabled = true
+    botao.textContent = `Reenviar código (${segundos}s)`
 
-    }, 1000)
+
+    setTimeout(atualizartimer, 1000)
 }
 
 const reenv_btn = document.getElementById("reenv_btn")
 
 reenv_btn.addEventListener("click", async () => {
+
+    iniciartimer()
 
     const reenvio = await fetch("http://127.0.0.1:5000/api/reenviar-codigo", {
 
@@ -91,7 +109,6 @@ reenv_btn.addEventListener("click", async () => {
         return
     }
 
-    iniciartimer()
 }) 
 
 async function iniciarexpiracao() {
@@ -121,16 +138,17 @@ async function iniciarexpiracao() {
     const agora = new Date().getTime()
     const restante = Math.floor((expiracao - agora) / 1000)
 
-    document.getElementById("tempo-expiracao").textContent = `Um código de verificação foi enviado para o email a cima, verifique o código e insira na caixa de texto abaixo para verificação do seu email. O código de verificação expira em (${restante}s).`
+    document.getElementById("tempo-expiracao").textContent = `Um código de verificação foi enviado para o email a cima, verifique o código e insira na caixa de texto abaixo para verificação do seu email. O código de verificação expira em ${restante}s.`
 
     if (restante <= 0){
 
         clearInterval(timeexpiracao)
 
-        document.getElementById("tempo-expiracao").textContent = "o código expirou"
-
+        document.getElementById("status").textContent = "*O código expirou*"
         document.getElementById("codigo").disabled = true
         document.getElementById("confirmar_btn").disabled = true
+
+        errocod.textContent = ""
     }
 
 }, 1000)
@@ -138,4 +156,4 @@ async function iniciarexpiracao() {
 }
 
 iniciarexpiracao()
-iniciartimer()
+atualizartimer()

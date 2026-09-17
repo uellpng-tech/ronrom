@@ -9,7 +9,7 @@ function dominio_email_valido(email){
         "uol.com.br"
     ]
 
-    part = email.toLowerCase().split("@")
+    const part = email.toLowerCase().split("@")
 
    if (part.length !== 2 || part[0] === ""){
         return false
@@ -67,6 +67,9 @@ document.getElementById("criar_btn").addEventListener("click", async () => {
 
     if (dados.status.includes("sucesso")) {
     localStorage.setItem("email", email)
+
+    const fim = Date.now() + 60 * 1000
+    localStorage.setItem("reenviar_fim", fim)
 
     window.location.href = "verificar.html"}
 })
