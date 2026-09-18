@@ -1,7 +1,7 @@
 import threading
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from usuarios import criar_user, veri_user_email, veri_cod, confirmar_email, reenviar_email
+from usuarios import criar_user, veri_user_email, veri_cod, confirmar_email, reenviar_email, veri_login
 from database import conectar
 
 app = Flask(__name__)
@@ -79,5 +79,20 @@ def expiracao_codigo():
     return jsonify({
         "expiracao": expiracao[0]
     }), 200
+
+@app.route("/api/consulta_login", methods=["POST"])
+def login():
+
+    dados = request.json
+
+    email = dados["email"]
+    senha = dados["senha"]
+
+    ver = veri_login(email, senha)
+
+    if ver:
+        return {"ok": True}, 200
+
+    return {"ok": False, "mensagem": "email ou senha inválidos"}, 401
 
 app.run(debug=True)

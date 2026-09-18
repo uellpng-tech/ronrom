@@ -158,3 +158,25 @@ def reenviar_email(email):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(emailenv, senha_app_email)
         smtp.send_message(msg)
+
+def veri_login(email, senha):
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+    SELECT email, senha_hash
+    FROM usuarios
+    WHERE email = ?
+""", (email,))
+
+    usuario = cursor.fetchone()
+
+    conexao.close()
+
+    if not usuario:
+        return False
+
+    senha_corr = bcrypt.checkpw(senha.encode("utf-8"), usuario[1])
+
+    return senha_corr

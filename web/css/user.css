@@ -79,6 +79,12 @@ body{
     margin-top: 20px;
 }
 
+#status{
+    color: red;
+    text-align: center;
+    font-size: 15px;
+}
+
 #criar_btn{
     color: white;
     text-align: center;
