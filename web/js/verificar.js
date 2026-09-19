@@ -37,6 +37,8 @@ document.getElementById("confirmar_btn").addEventListener("click", async () => {
 
     if (verificacao.ok){
         console.log(dadosc.mensagem)
+        localStorage.setItem("email", email)
+        localStorage.setItem("logado", "true")
         window.location.href = "index.html"
     } else {
         console.log(dadosc.mensagem)

@@ -95,4 +95,34 @@ def login():
 
     return {"ok": False, "mensagem": "email ou senha inválidos"}, 401
 
+@app.route("/api/username", methods=["POST"])
+def consulta_username():
+
+    dados = request.get_json()
+
+    email = dados["email"]
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute(
+        "SELECT username FROM usuarios WHERE email = ?",
+        (email,)
+    )
+
+    usuario = cursor.fetchone()
+
+    conexao.close()
+
+    if not usuario:
+        return jsonify({
+            "ok": False,
+            "mensagem": "usuário não encontrado"
+        }), 404
+
+    return jsonify({
+        "ok": True,
+        "username": usuario[0]
+    }), 200
+
 app.run(debug=True)

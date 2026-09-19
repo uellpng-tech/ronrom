@@ -21,6 +21,7 @@ document.getElementById("entrar_btn").addEventListener("click", async () => {
     if(dados.ok){
         console.log(dados)
         localStorage.setItem("logado", "true")
+        localStorage.setItem("email", email)
         window.location.href = "index.html"
     } else{
         status.textContent = `*${dados.mensagem}*`

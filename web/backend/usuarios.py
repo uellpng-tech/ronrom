@@ -2,7 +2,6 @@ import bcrypt
 import random
 import smtplib
 import os
-import sqlite3
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from email.message import EmailMessage

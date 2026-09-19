@@ -15,9 +15,7 @@ body{
 }
 
 .principal{
-    width: 90%;
-    max-width: 1500px;
-    margin: 0 auto;
+    width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -28,45 +26,53 @@ body{
 }
 
 #conta_info{
-    padding: 20px 25px;
+    padding: 2vh 2vw;
     border-bottom: 1px solid #eeeeee;
-    margin-bottom: 20px;
+    margin-bottom: 2vh;
+    display: flex;
+    align-items: center;
+    gap: 1.2vw;
 }
 
 #configs{
-    width: 100%;
-    max-width: 800px;
+    width: 60vw;
+    max-width: 900px;
+    min-width: 300px;
     flex: 1;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     background-color: white;
-    padding: 20px 0 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 2vh 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 #configs h1{
-    padding: 10px 25px 20px;
-    font-size: 30px;
+    margin: 0;
+    padding: 1vh 2vw 2vh;
+    font-size: 2.2vw;
 }
 
 #configs a, #configs button{
     display: flex;
     align-items: center;
     width: 100%;
-    min-height: 70px;
-    padding: 0 25px;
+    min-height: 8vh;
+    padding: 0 2vw;
     border: none;
     background: none;
     text-decoration: none;
     text-align: left;
-    font-size: 18px;
+    font-size: 1.2vw;
     cursor: pointer;
+    color: inherit;
 }
 
 #configs img{
-    width: 24px;
-    height: 24px;
+    width: 1.6vw;
+    height: 1.6vw;
+    min-width: 20px;
+    min-height: 20px;
     margin-right: 8px;
 }
 
@@ -76,11 +82,63 @@ body{
 
 .rodapé {
     width: 100%;
-    height: 150px;
+    height: 15vh;
+    min-height: 100px;
     background-color: #ffbd59;
 }
 
 #conta_info img{
-    width: 85px;
-    height: 85px
+    width: 6vw;
+    height: 6vw;
+    min-width: 60px;
+    min-height: 60px;
+    max-width: 100px;
+    max-height: 100px;
+    flex-shrink: 0;
+}
+
+#conta_info{
+    padding: 20px 25px;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px
+}
+
+#user_dados{
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+#user_dados p {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+#username{
+    font-size: 2.2vw;
+    font-weight: bold;
+}
+
+#email{
+    font-size: 1vw;
+}
+
+.voltar {
+    display: flex;
+    align-items: center;
+}
+
+.voltar img {
+    width: clamp(35px, 4vw, 50px);
+    height: clamp(35px, 4vw, 50px);
+}
+
+.voltar a {
+    text-decoration: none;
+    font-size: clamp(16px, 1.3vw, 19px);
+    color: #ffbd59;
+    font-weight: bold;
 }
