@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.principal{
+    width: 90%;
+    max-width: 1500px;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#menu{
+    width: 100%;
+}
+
+#conta_info{
+    padding: 20px 25px;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 20px;
+}
+
+#configs{
+    width: 100%;
+    max-width: 800px;
+    flex: 1;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px 0 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+#configs h1{
+    padding: 10px 25px 20px;
+    font-size: 30px;
+}
+
+#configs a, #configs button{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 70px;
+    padding: 0 25px;
+    border: none;
+    background: none;
+    text-decoration: none;
+    text-align: left;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#configs img{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+#configs a + a, #configs a + button{
+    border-top: 1px solid #eeeeee;
+}
+
+.rodapé {
+    width: 100%;
+    height: 150px;
+    background-color: #ffbd59;
+}
+
+#conta_info img{
+    width: 85px;
+    height: 85px
+}
