@@ -52,9 +52,9 @@ def criar_user(username, email, senha):
         return erros
     
     cursor.execute("""
-    INSERT INTO usuarios (username, email, senha_hash, codigo, email_verificado, codigo_expira_em)
-    VALUES (?, ?, ?, ?, ?, ?)
-    """,(username, email, hash, codigo, 0, expiracao))
+    INSERT INTO usuarios (username, email, senha_hash, codigo, email_verificado, codigo_expira_em, foto_user)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    """,(username, email, hash, codigo, 0, expiracao, "user-ft-1.png"))
 
     conexao.commit()
     conexao.close()

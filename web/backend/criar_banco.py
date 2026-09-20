@@ -11,7 +11,8 @@ cursor.execute("""
         senha_hash TEXT NOT NULL,
         codigo TEXT,
         email_verificado BOLEAN NOT NULL DEFAULT FALSE,
-        codigo_expira_em DATETIME
+        codigo_expira_em DATETIME,
+        foto_user TEXT
     )
 """)
 
