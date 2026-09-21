@@ -32,7 +32,6 @@ body{
     display: flex;
     align-items: center;
     gap: 8px;
-
     font-size: clamp(14px, 1vw, 16px);
     font-weight: bold;
 }
@@ -52,11 +51,17 @@ body{
 #fotos img {
     width: clamp(55px, 7vw, 80px);
     height: clamp(55px, 7vw, 80px);
-
     border-radius: 50%;
     object-fit: cover;
-
     cursor: pointer;
+    transition: filter 0.2s, opacity 0.2s;
+}
+#fotos img.slecionada{
+    filter: brightness(1);
+}
+
+#fotos img:not(.selecionada){
+    filter: brightness(0.5);
 }
 
 #bloco_editar{
@@ -135,4 +140,13 @@ body{
     color: #ffbd59;
     font-weight: bold;
     font-family: "Segoe UI", Arial, sans-serif;
+}
+
+#status{
+    color: red;
+    font-size: clamp(12px, 1vw, 14px);
+    max-width: 100%;
+    overflow-wrap: break-word;
+    font-family: initial;
+    text-align: center;
 }

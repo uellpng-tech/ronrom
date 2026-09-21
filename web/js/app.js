@@ -1,11 +1,3 @@
-const perfil = document.getElementById("conta_btn")
-
-if (localStorage.getItem("logado") === "true"){
-    perfil.href = "userconfig.html"
-} else{
-    perfil.href = "user.html"
-}
-
 const email = localStorage.getItem("email")
 
 async function fotouser(){
@@ -20,4 +12,18 @@ async function fotouser(){
     const dados = await consulta.json()
 
     localStorage.setItem("foto_user", dados.foto_user)
+
+    const foto = perfil.querySelector("img")
+    foto.src = `../assets/${dados.foto_user}`
+}
+
+const perfil = document.getElementById("conta_btn")
+const foto = perfil.querySelector("img");
+
+if (localStorage.getItem("logado") === "true"){
+    perfil.href = "userconfig.html"
+    fotouser()
+} else{
+    perfil.href = "user.html"
+    foto.src = "../assets/conta_default.png";
 }

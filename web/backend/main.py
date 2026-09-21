@@ -2,6 +2,7 @@ import threading
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from usuarios import criar_user, veri_user_email, veri_cod, confirmar_email, reenviar_email, veri_login
+from userconfig import editar_user, confirmar_senha_user
 from database import conectar
 
 app = Flask(__name__)
@@ -125,4 +126,84 @@ def consulta_username():
         "username": usuario[0]
     }), 200
 
+@app.route("/api/foto_usuario", methods=["POST"])
+def foto_consulta():
+
+    dados = request.get_json()
+
+    email = dados.get("email")
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+    SELECT foto_user
+    FROM usuarios
+    WHERE email = ?
+""", (email,))
+
+    usuario = cursor.fetchone()
+
+    conexao.close()
+
+    if usuario is None:
+        return jsonify({"erro": "usuario_nao_encontrado"}), 404
+
+    return jsonify({
+        "foto_user": usuario[0]
+    }), 200
+
+@app.route("/api/editar_perfil", methods=["POST"])
+def editar_perfil():
+
+    dados = request.get_json()
+
+    email_atual = dados.get("email_atual")
+    username = dados.get("username")
+    email = dados.get("email")
+    senha = dados.get("senha")
+    foto_user = dados.get("foto_user")
+
+    resultado = editar_user(username, email, senha, foto_user, email_atual)
+
+    if not resultado:
+        return jsonify({
+            "ok": False,
+            "mensagem": "Usuário não encontrado"
+        }), 404
+
+    if resultado == "usuario_ou_email_inexistente":
+        return jsonify({
+            "ok": False,
+            "mesangem": "username ou email já cadastrado"
+        }), 409
+
+    return jsonify({
+        "ok": True,
+        "username": resultado["username"],
+        "email": resultado["email"],
+        "foto_user": resultado["foto_user"],
+        "mensagem": "Perfil atualizado com sucesso"
+    }), 200
+
+@app.route("/api/confirmar_senha", methods=["POST"])
+def confirmar_senha():
+
+    dados = request.get_json()
+
+    email = dados.get("email")
+    senha = dados.get("senha")
+
+    resultado = confirmar_senha_user(email, senha)
+
+    if resultado:
+        return jsonify({
+            "ok": True
+        }), 200
+
+    return jsonify({
+        "ok": False,
+        "mensagem": "senha incorreta"
+    }), 401
+    
 app.run(debug=True)

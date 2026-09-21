@@ -37,4 +37,11 @@ async function buscaruser(){
     document.getElementById("username").textContent = dados.username
 }
 
+const foto = document.getElementById("ft_user")
+const fotoatual = localStorage.getItem("foto_user")
+
+if(fotoatual){
+    foto.src = `../assets/${fotoatual}`
+}
+
 buscaruser()
