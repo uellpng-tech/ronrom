@@ -98,3 +98,45 @@ def confirmar_senha_user(email, senha):
         senha.encode("utf-8"),
         senha_hash
     )
+
+def resetar_senha(email, senha, senha_nova):
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+    SELECT senha_hash
+    FROM usuarios
+    WHERE email = ?
+""", (email,))
+
+    usuario = cursor.fetchone()
+
+    if usuario is None:
+        conexao.close()
+        return False
+
+    senha_hash = usuario[0]
+
+    if not bcrypt.checkpw(
+        senha.encode("utf-8"),
+        senha_hash
+    ):
+        conexao.close()
+        return "senha_incorreta"
+
+    nova_senha_hash = bcrypt.hashpw(
+        senha_nova.encode("utf-8"),
+        bcrypt.gensalt()
+    )
+
+    cursor.execute("""
+        UPDATE usuarios
+        SET senha_hash = ?
+        WHERE email = ?
+""", (nova_senha_hash, email))
+
+    conexao.commit()
+    conexao.close()
+
+    return True
