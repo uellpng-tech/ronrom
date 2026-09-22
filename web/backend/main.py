@@ -2,7 +2,7 @@ import threading
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from usuarios import criar_user, veri_user_email, veri_cod, confirmar_email, reenviar_email, veri_login
-from userconfig import editar_user, confirmar_senha_user, resetar_senha
+from userconfig import editar_user, confirmar_senha_user, resetar_senha, alterar_senha_es
 from database import conectar
 
 app = Flask(__name__)
@@ -207,7 +207,7 @@ def confirmar_senha():
     }), 401
 
 
-@app.route("/api/enviar-codigo-reset", methods=["POST"])
+@app.route("/api/resetar_senha", methods=["POST"])
 def reset_senha():
 
     dados = request.get_json()
@@ -233,6 +233,26 @@ def reset_senha():
     return jsonify({
         "ok": True,
         "mensagem": "senha alterada com sucesso"
+    }), 200
+
+@app.route("/api/alterar_senha_reset", methods=["POST"])
+def esqueci_senha():
+
+    dados = request.get_json()
+
+    email = dados.get("email")
+    senha = dados.get("senha")
+
+    resultado = alterar_senha_es(email, senha)
+
+    if not resultado:
+        return jsonify({
+            "mensagem": "usuário não encontrado"
+        }), 404
+
+    return jsonify({
+        "ok": True,
+        "mensagem": "usuário alterado com sucesso"
     }), 200
     
 app.run(debug=True)

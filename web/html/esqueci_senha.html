@@ -3,36 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/verificar_reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/esqueci_senha.css">
     <link rel="icon" type="image/png" href="../assets/logo.png">
     <title>Ronrom</title>
 </head>
 <body>
+
     <div class="voltar">
         <img src="../assets/voltar_botao.png" height="50" width="50">
         <a href="senha.html">Voltar</a>
     </div>
 
     <header class="principal">
-        <div class="bloco_verificacao">
-            <legend>Verifique seu E-mail</legend>
-            <legend id="email-masc"></legend>
-            <a id="tempo-expiracao">Um código de verificação foi enviado para o email a cima, verifique o código e insira na caixa de texto abaixo para a alteração de sua senha. O código de verificação expira em 300s.</a>
-            <input type="text" placeholder="Código..." maxlength="15" id="codigo">
-            <button id="reenv_btn">Reenviar código (60s)</button>
+        <div class="bloco_senha">
+            <label for="senha_nova">senha nova:</label>
+            <input type="password" maxlength="15" id="senha_nova">
+            <label for="senha_novac">confirmar senha nova:</label>
+            <input type="password" maxlength="15" id="senha_novac">
             <a id="status"></a>
-            <a id="errocod"></a>
-            
             <button type="submit" id="confirmar_btn">Confirmar</button>
         </div>
     </header>
-
+    
     <footer class="rodape">
         <div class="linha">
             <img src="../assets/logofeed.png">
         </div>
     </footer>
+    
+    <script src="../js/esqueci_senha.js"></script>
 
-   <script src="../js/verificar_reset.js"></script>
 </body>
 </html>

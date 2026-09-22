@@ -3,6 +3,7 @@ body{
     margin: 0;
     flex-direction: column;
     min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .rodape{
@@ -35,7 +36,7 @@ body{
     width: 10vw;
 }
 
-.bloco_verificacao{
+.bloco_senha{
     display: flex;
     background-color: #b35a00;
     flex-direction: column;
@@ -49,27 +50,25 @@ body{
     justify-content: center;
 }
 
-.bloco_verificacao input:first-child{
+.bloco_senha label{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.bloco_senha input:first-child{
     width: 100%;
     box-sizing: border-box;
 }
 
-.bloco_verificacao input{
+.bloco_senha input{
     border: none;
     border-radius: 8px;
     padding: 15px 18px;
     font-size: 16px;
 }
 
-.bloco_verificacao legend{
-    color: white;
-    font-size: 30px;
-    border-radius: 10px;
-    font-weight: bold;
-    align-self: center;
-}
-
-.bloco_verificacao button{
+.bloco_senha button{
     width: 50%;
     padding: 12px;
     border: none;
@@ -77,13 +76,14 @@ body{
     font-size: 16px;
     cursor: pointer;
     align-self: center;
-    margin-top: 0px;
+    margin-top: 20px;
 }
 
-.bloco_verificacao a {
-    color: white;
-    text-decoration: none;
+#status{
+    color: red;
+    text-align: center;
     font-size: 15px;
+    font-family: initial;
 }
 
 .voltar {
@@ -102,24 +102,4 @@ body{
     color: #ffbd59;
     font-weight: bold;
     font-family: "Segoe UI", Arial, sans-serif;
-}
-
-#reenv_btn{
-    width: 40%;
-    margin: 0;
-    margin-top: 0px;
-    background: none;
-    color: white;
-    text-decoration: none;
-}
-
-#reenv_btn:hover{
-    text-decoration: underline;
-}
-
-#status{
-    color: red;
-    font-size: 15px;
-    align-self: center;
-    margin-top: -15px
 }

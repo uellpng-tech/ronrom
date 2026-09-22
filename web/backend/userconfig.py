@@ -99,7 +99,7 @@ def confirmar_senha_user(email, senha):
         senha_hash
     )
 
-def resetar_senha_email(email, senha, senha_nova):
+def resetar_senha(email, senha, senha_nova):
 
     conexao = conectar()
     cursor = conexao.cursor()
@@ -140,3 +140,26 @@ def resetar_senha_email(email, senha, senha_nova):
     conexao.close()
 
     return True
+
+def alterar_senha_es(email, senha):
+
+    hash = bcrypt.hashpw(
+        senha.encode("utf-8"),
+        bcrypt.gensalt()
+    )
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        UPDATE usuarios
+        SET senha_hash = ?
+        WHERE email = ?
+""", (hash, email))
+
+    alterou = cursor.rowcount > 0
+
+    conexao.commit()
+    conexao.close()
+
+    return alterou
