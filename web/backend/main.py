@@ -207,7 +207,7 @@ def confirmar_senha():
     }), 401
 
 
-@app.route("/api/resetar_senha", methods=["POST"])
+@app.route("/api/enviar-codigo-reset", methods=["POST"])
 def reset_senha():
 
     dados = request.get_json()

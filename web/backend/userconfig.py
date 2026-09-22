@@ -99,7 +99,7 @@ def confirmar_senha_user(email, senha):
         senha_hash
     )
 
-def resetar_senha(email, senha, senha_nova):
+def resetar_senha_email(email, senha, senha_nova):
 
     conexao = conectar()
     cursor = conexao.cursor()
