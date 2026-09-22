@@ -20,6 +20,7 @@ cursor.execute("""
     CREATE TABLE IF NOT EXISTS gatos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
+        cor TEXT,
         idade_aproximada TEXT,
         sexo TEXT,
         peso REAL,
@@ -38,14 +39,6 @@ cursor.execute("""
         FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
     )
 """)
-
-cursor.execute("""
-    SELECT name
-    FROM sqlite_master
-    WHERE type = 'table'
-""")
-
-print(cursor.fetchall())
 
 conexao.commit()
 conexao.close()

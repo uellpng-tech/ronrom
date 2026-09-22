@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
     display: flex;
+    overflow: hidden;
 }
 
 .menu_lateral{
@@ -57,7 +58,7 @@ body{
     background-color:#ffffff;
     border: 2px solid #ffbd59;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 1px;
 }
 
 .lupa{
@@ -84,4 +85,91 @@ body{
     background: transparent;
     flex: 1;
     height: 100%;
+}
+
+.caixa_gatos{
+    width: 100%;
+    max-width: 1100px;
+    height: 85vh;
+    max-height: 800px;
+    min-height: 300px;
+    margin-top: 30px;
+    padding: clamp(10px, 2vw, 20px);
+    border: 3px solid #ffbd59;
+    border-radius: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.gatos{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: clamp(10px, 2vw, 20px);
+    width: 100%;
+    cursor: pointer;
+}
+
+.gato{
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border: 2px solid #ffbd59;
+    border-radius: 12px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #ffbd59;
+    position: relative;
+}
+
+#gatoimg {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+.gato h3{
+    margin: 10px 0 6px;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    color: #ff9d3b
+}
+
+.gato p{
+    margin: 5px 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+#info_gato{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+#dados_gato{
+    min-width: 0;
+    flex: none
+}
+
+#favorito_btn{
+    position: absolute;
+    bottom: 1px;
+    right: 3px;
+    border: none;
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#favorito_btn img{
+    width: 50px;
+    height: 50px;
+    display: block;
 }

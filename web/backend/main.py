@@ -254,5 +254,45 @@ def esqueci_senha():
         "ok": True,
         "mensagem": "usuário alterado com sucesso"
     }), 200
+
+@app.route("/api/gatos", methods=["GET"])
+def listar_gatos():
+
+    pesquisa = request.args.get("pesquisa", "")
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+        SELECT id, nome, cor, idade_aproximada, sexo, foto
+        FROM gatos
+        WHERE nome LIKE ?
+        OR cor LIKE ?
+        OR idade_aproximada LIKE ?
+        OR sexo LIKE ?
+""", (
+    f"%{pesquisa}%",
+    f"%{pesquisa}%",
+    f"%{pesquisa}%",
+    f"%{pesquisa}%"
+))
+
+    gatos = cursor.fetchall()
+
+    conexao.close()
+
+    lista_gatos = []
+
+    for gato in gatos:
+        lista_gatos.append({
+            "id": gato[0],
+            "nome": gato[1],
+            "cor": gato[2],
+            "idade_aproximada": gato[3],
+            "sexo": gato[4],
+            "foto": gato[5]
+        })
+
+    return jsonify(lista_gatos)
     
 app.run(debug=True)
