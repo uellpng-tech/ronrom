@@ -31,3 +31,7 @@ As características visuais serão feitas através da ferramenta Canva. Apesar d
 
 #### Protótipo de tela Mobile:<br>
 <img src="assets/prototipo-de-tela-app.png"><br>
+
+## Slides versão beta Ronrom
+
+- [PDF versão beta aplicação ronrom](slides-beta-ronrom.pdf)
