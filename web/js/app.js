@@ -66,6 +66,7 @@ async function carregargatos(pesquisa = ""){
 
         containergatos.appendChild(card)
         card.addEventListener("click", () => {
+            localStorage.setItem("gato_id", gato.id)
             window.location.href = "gato.html"
         })
     })

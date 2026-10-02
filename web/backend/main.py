@@ -294,5 +294,42 @@ def listar_gatos():
         })
 
     return jsonify(lista_gatos)
+
+@app.route("/api/gatos_info", methods=["POST"])
+def consulta_gato():
+
+    dados = request.get_json()
+    id_gato = dados.get("gato_id")
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("""
+    SELECT nome, cor, idade_aproximada, sexo, peso, castrado, vacinado, vermifugado, fiv, felv, deficiente, comportamento, historico_resgate, foto, video
+    FROM gatos
+    WHERE id = ?
+""", (id_gato,))
+
+    gatoinfo = cursor.fetchone()
+
+    conexao.close()
+
+    return jsonify({
+        "nome": gatoinfo[0],
+        "cor": gatoinfo[1],
+        "idade_aproximada": gatoinfo[2],
+        "sexo": gatoinfo[3],
+        "peso": gatoinfo[4],
+        "castrado": gatoinfo[5],
+        "vacinado": gatoinfo[6],
+        "vermifulgado": gatoinfo[7],
+        "fiv": gatoinfo[8],
+        "felv": gatoinfo[9],
+        "deficiente": gatoinfo[10],
+        "comportamento": gatoinfo[11],
+        "historico_resgate": gatoinfo[12],
+        "foto": gatoinfo[13],
+        "video": gatoinfo[14]
+    })
     
 app.run(debug=True)

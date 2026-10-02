@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box
+}
+
+.voltar {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.voltar img {
+    width: clamp(35px, 4vw, 50px);
+    height: clamp(35px, 4vw, 50px);
+}
+
+.voltar a {
+    text-decoration: none;
+    font-size: clamp(16px, 1.3vw, 19px);
+    color: #ffbd59;
+    font-weight: bold;
+}
+
+body{
+    margin: 0;
+    background: #f5f5f5;
+    font-family: "Segoe UI", Arial, sans-ser
+}
+
+.principal{
+    width:100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 20px
+}
+
+#info{
+    width: 900px;
+    max-width: 100%;
+    background-color: #ffbd59;;
+    padding: 25px 30px;
+    flex: 1;
+} 
+
+#nome{
+    margin-top: 0
+}
+
+#foto{
+    width: 900px;
+    max-width: 100%;
+    height: 600px
+}
+
+#foto img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block
+}
+
+#info_boolean{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px
+}
+
+#info_boolean p{
+    margin: 0
+}
+
+#adotar_btn{
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 30px auto 0;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 12px;
+    background-color: #b35a00;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#adotar_btn:hover {
+    background-color: #994d00;
+    transform: scale(1.02);
+}
+
+#adotar_btn:active {
+    transform: scale(0.98);
+}
+
+p, h1{
+    color: white;
+}
