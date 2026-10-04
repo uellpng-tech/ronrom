@@ -5,9 +5,10 @@
 .voltar {
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
+    width: 100%;
+    height: clamp(45px, 5vh, 60px);
+    background-color: #ec7600;
+    border-bottom: 2px solid #db6e00;
 }
 
 .voltar img {
@@ -18,7 +19,7 @@
 .voltar a {
     text-decoration: none;
     font-size: clamp(16px, 1.3vw, 19px);
-    color: #ffbd59;
+    color: white;
     font-weight: bold;
 }
 
@@ -30,29 +31,21 @@ body{
 
 .principal{
     width:100%;
-    min-height: 100vh;
+    height: 100vh;
+    height: calc(100vh - clamp(45px, 5vh, 60px));
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px 20px
+    padding: 0 125px;
 }
 
 #info{
-    width: 900px;
-    max-width: 100%;
+    width: 50%;
+    height: 100%;
     background-color: #ffbd59;;
-    padding: 25px 30px;
-    flex: 1;
-} 
-
-#nome{
-    margin-top: 0
 }
 
 #foto{
-    width: 900px;
-    max-width: 100%;
-    height: 600px
+    width: 50%;
+    height: 100%;
 }
 
 #foto img{
@@ -69,7 +62,8 @@ body{
 }
 
 #info_boolean p{
-    margin: 0
+    margin-top: 10px;
+    margin-left: 20px
 }
 
 #adotar_btn{
@@ -96,6 +90,16 @@ body{
     transform: scale(0.98);
 }
 
+p {
+    font-size: clamp(20px, 1.2vw, 40px);
+}
+
+h1 {
+    font-size: clamp(50px, 2.5vw, 74px);
+}
+
 p, h1{
     color: white;
+    margin-top: 10px;
+    margin-left: 20px;
 }

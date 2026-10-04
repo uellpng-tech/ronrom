@@ -38,7 +38,10 @@ async function carregarinfo(){
     felv.textContent = dados.felv
     deficiente.textContent = dados.deficiente
     comportamento.textContent = dados.comportamento
-    historico.textContent = dados.historico_resgate 
+    historico.textContent = dados.historico_resgate
+    gato_foto = dados.foto
+    fotoga = document.getElementById("fotog")
+    fotoga.src = `../assets/exemplos-gatos/${gato_foto}`
 }
 
 carregarinfo()
