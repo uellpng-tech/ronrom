@@ -19,7 +19,7 @@ function criar_caixa(elemento, titulo, valor){
     elemento.classList.add("caixa");
     elemento.innerHTML = `
         <span class="caixa-titulo">${titulo}</span>
-        <span class="caixa-valor">${verdadeiro ? "Sim" : "Não"}</span>
+        <img class="caixinha-valor" src="${verdadeiro ? '../assets/caixa_ativada.png' : '../assets/caixa_desa.png'}">
     `
 }
 

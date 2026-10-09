@@ -46,6 +46,24 @@ body{
     flex-direction: column;
 }
 
+#info_principal{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    margin-top: auto;
+}
+
+#info_principal p {
+    font-size: 30px;
+    margin: 0;
+    padding: 15px;
+    border-radius: 8px;
+    color: #ffffff;
+    text-align: center;
+}
+
 #foto{
     width: 50%;
 }
@@ -59,25 +77,26 @@ body{
 
 #info_boolean{
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    padding: 20px;
-    overflow-y: auto
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
 }
 
 .caixa{
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 4px;
-    min-height: 90px;
+    min-height: 50px;
     margin: 0;
     padding: 12px;
-    background-color: #db6e00;
-    border: 2px solid #db6e00;
-    border-radius: 12px;
-    text-align: center
+    background-color: #ffab2c;
+    text-align: center;
+}
+
+.caixa:nth-child(even){
+    background-color: #ffb443;
 }
 
 .caixinha-titulo {
@@ -90,6 +109,9 @@ body{
     font-size: 20px;
     font-weight: bold;
     color: #333;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
 }
 
 #adotar_btn{
