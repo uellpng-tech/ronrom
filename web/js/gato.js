@@ -13,6 +13,16 @@ const deficiente = document.getElementById("deficiente")
 const comportamento = document.getElementById("comportamento")
 const historico = document.getElementById("historico")
 
+function criar_caixa(elemento, titulo, valor){
+    const verdadeiro = valor === 1 || valor === true;
+
+    elemento.classList.add("caixa");
+    elemento.innerHTML = `
+        <span class="caixa-titulo">${titulo}</span>
+        <span class="caixa-valor">${verdadeiro ? "Sim" : "Não"}</span>
+    `
+}
+
 async function carregarinfo(){
     const consulta = await fetch('http://127.0.0.1:5000/api/gatos_info', {
         method: "POST",
@@ -31,12 +41,12 @@ async function carregarinfo(){
     sexo.textContent = dados.sexo
     cor.textContent = dados.cor
     peso.textContent = dados.peso
-    castrado.textContent = dados.castrado
-    vacinado.textContent = dados.vacinado
-    vermifulgado.textContent = dados.vermifulgado
-    fiv.textContent = dados.fiv
-    felv.textContent = dados.felv
-    deficiente.textContent = dados.deficiente
+    criar_caixa(castrado, "Castrado", dados.castrado)
+    criar_caixa(vacinado, "Vacinado", dados.vacinado)
+    criar_caixa(vermifulgado, "Vermifugado", dados.vermifulgado)
+    criar_caixa(fiv, "FIV", dados.fiv)
+    criar_caixa(felv, "FeLV", dados.felv)
+    criar_caixa(deficiente, "Deficiente", dados.deficiente) 
     comportamento.textContent = dados.comportamento
     historico.textContent = dados.historico_resgate
     gato_foto = dados.foto
