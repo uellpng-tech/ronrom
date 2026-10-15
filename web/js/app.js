@@ -1,4 +1,5 @@
 const email = localStorage.getItem("email")
+let favoritos = JSON.parse(localStorage.getItem("favoritos")) || []
 
 async function fotouser(){
     const consulta = await fetch("http://127.0.0.1:5000/api/foto_usuario", {
@@ -59,7 +60,7 @@ async function carregargatos(pesquisa = ""){
             </div>
 
             <button id="favorito_btn">
-                <img src="../assets/botao_favoritos.png">
+                <img src="../assets/botao_favoritos.png" id="img_fav">
             </button>
         </div>
         `
@@ -68,6 +69,31 @@ async function carregargatos(pesquisa = ""){
         card.addEventListener("click", () => {
             localStorage.setItem("gato_id", gato.id)
             window.location.href = "gato.html"
+        })
+
+        const fav = card.querySelector("#favorito_btn")
+        const img_fav = fav.querySelector("img")
+
+        if (favoritos.includes(gato.id)) {
+            img_fav.src = "../assets/fav_ativo.png"
+        }
+
+        fav.addEventListener("click", (event) => {
+            event.stopPropagation()
+
+            if (favoritos.includes(gato.id)){
+
+                favoritos = favoritos.filter(id => id !== gato.id)
+
+                img_fav.src = "../assets/botao_favoritos.png"
+            } else {
+
+                favoritos.push(gato.id)
+
+                img_fav.src = "../assets/fav_ativo.png"
+            }
+
+            localStorage.setItem("favoritos", JSON.stringify(favoritos))
         })
     })
 }

@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Arial, sans-ser;
+}
+
+body{
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.voltar{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    height: clamp(45px, 5vh, 60px);
+    padding: 0 15px;
+    background-color: #ec7600;;
+    border-bottom: 2px solid #ec7600;;
+}
+
+.voltar img{
+    width: clamp(35px, 4vw, 50px);
+    height: clamp(35px, 4vw, 50px);
+}
+
+.voltar a{
+    color: white;
+    text-decoration: none;
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: bold;
+}
+
+.infos{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
