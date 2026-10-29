@@ -1,6 +1,6 @@
 # Ronrom
 
-## O que é o Romrom?
+## O que é o Ronrom?
 
 O projeto Ronrom é uma aplicação web cujo objetivo é conscientizar e simplificar exclusivamente a adoção de gatos. O projeto Ronrom se utiliza das linguagens `HTML, CSS, Javascript e Python`, essas linguagens são responsáveis por constituir o projeto Ronrom e ajudar a manter o conceito do projeto, cumprindo exatamente com a simplicidade representada pelo Front-end (HTML, CSS e Javascript) que facilita o acesso a ferramenta e por outro lado o Back-end (Python) que facilita e serve a movimentação de dados com o Flask, além de constituir o proprio banco de dados com a criação e gestão através do sqlite3. Cada componente da construção reflete no projeto trazendo a simplificação e o alcance a conscientização, ambos são o foco do projeto.
 
