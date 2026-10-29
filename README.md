@@ -33,11 +33,15 @@ As funcinalidades atuais são representadas em três grupos. As funcionalidades 
     - Edição de usuários: A aplicação permite a edição de usuários, possibilitando mudança de foto, nome de usuário, E-mail e senha;
     - Envio de E-mail: Além da gestão de usuário a aplicação permite o envio de E-mail através de ferramentas como "esqueci a senha" ou confirmação para atividades de edição;
 
+        <img src="assets/exemplo-cadastro.gif" width="500">
+
 - Segurança da Conta:
 
     - Verificação de E-mail: Através do envio de E-mail a plataforma permite que a conta do usuário possa ser verificada por segurança, através de um  código de confirmação com prazo e reenvio;
     - Recuperação de senha: A plataforma disponibiliza a recuperação de senha através do E-mail;
     - Validação de senha: A plataforma verifica dentro do banco de dados se sua senha realmente está correta;
+
+        <img src="assets/exemplo-esqueci-senha.gif" width="500">
 
 - Feed de Adoção:
 
@@ -46,19 +50,26 @@ As funcinalidades atuais são representadas em três grupos. As funcionalidades 
     - Navegação vertical com scroll: O sistema de navegação permite a facilidade de visualizar todos os gatos através da ferramenta de scroll do mouse;
     - Ferramenta de pesquisa no feed: O feed permite pesquisar adereços relacionados a escolha de quema adota.
 
+        <img src="assets/exemplo-interface.gif" width="500">
+
 
 ## Como executar o projeto
 
-1. Clone o repositório https://github.com/uellpng-tech/ronrom.git
-2. Extraia o arquivo `.zip` gerado após a clonagem
-3. Acesse a pasta do projeto dentro do terminal
-4. Crie a máquina virtual dentro da pasta do projeto `python -m venv .venv`
-5. Ative a máquina virtual
-    - Windows: `.venv\Scripts\activate`
-    - Linux / macOS: `source .venv/bin/activate`
-6. Acesse a pasta `web` pelo terminal e logo em seguida a pasta `backend`
-7. Instale as bibliotecas através do `requirements.txt` `pip install -r requirements.txt`
+1. Clone o repositório https://github.com/uellpng-tech/ronrom.git;
+2. Extraia o arquivo `.zip` gerado após a clonagem;
+3. Acesse a pasta do projeto dentro do terminal;
+4. Crie a máquina virtual dentro da pasta do projeto `python -m venv .venv`;
+5. Ative a máquina virtual:
+    - Windows: `.venv\Scripts\activate`;
+    - Linux / macOS: `source .venv/bin/activate`.
+6. Acesse a pasta `web` pelo terminal e logo em seguida a pasta `backend`;
+7. Instale as bibliotecas através do `requirements.txt` `pip install -r requirements.txt`.
+
+OBS: Caso o banco venha sem informações ou não esteja funcionando basta executar os scripts da pasta backend `criar_banco.py` e `adicionar_exemplos.py`.
 
 ## Detalhes Adicionais
 
+Alguns outros aspectos não menos importantes fizeram parte da criação do projeto como um todo. Os detalhes são tudo aquilo que compõe a pré-criação do projeto, antes de criar eu produzi slides e pré-projeto em conjunto com uma apresentação da beta do Ronrom, portanto gostaria de deixar uma menção honrosa aos pré-projetos que tornaram a criação possível.
+
 - [Pré-Projeto](pre-projeto.md)
+- [Slides](assets/slides-ronrom.pdf)
